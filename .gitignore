@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+count.db
 
 # C extensions
 *.so
