@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, render_template
+from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 
@@ -13,10 +14,16 @@ class Base(DeclarativeBase):
 
 # To run flask --app main run
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('LOCAL_DB_URI')
 
+# ---- Config ----
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('LOCAL_DB_URI')
+app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
+
+socketio = SocketIO(app)
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
+
+
 
 class Counter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,4 +37,4 @@ def hello_world():
 
 # For debug
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(debug=True)
