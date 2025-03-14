@@ -49,4 +49,4 @@ def increment_counter(count):
 
 # For debug
 if __name__ == "__main__":
-    socketio.run(app, debug=False)
+    socketio.run(app, host="0.0.0.0", debug=False)
