@@ -17,18 +17,18 @@ class Base(DeclarativeBase):
 app = Flask(__name__)
 
 # ---- Config ----
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('LOCAL_DB_URI')
-app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('LOCAL_DB_URI')
+# app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
-socketio = SocketIO(app)
-db = SQLAlchemy(model_class=Base)
-db.init_app(app)
+# socketio = SocketIO(app)
+# db = SQLAlchemy(model_class=Base)
+# db.init_app(app)
 
 
 
-class Counter(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    amount = db.Column(db.Integer)
+# class Counter(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     amount = db.Column(db.Integer)
 
 # Creates a new counter
 
@@ -36,7 +36,7 @@ class Counter(db.Model):
 def hello_world():
     # counter = Counter.query.filter_by(id=0).first()
 
-    return render_template("home.html", counter=0)
+    return "foo"
 
 
 # @socketio.on("count")
@@ -50,4 +50,4 @@ def hello_world():
 
 # For debug
 if __name__ == "__main__":
-    socketio.run(app, debug=False)
+    app.run(app, debug=False)
