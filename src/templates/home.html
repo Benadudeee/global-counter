@@ -7,10 +7,10 @@
 </head>
 <body>
 
-    <p>Users have clicked on this for <span class="counter">{{counter.amount}}</span> times</p>
+    <p>Users have clicked on this for <span class="counter">{{counter}}</span> times</p>
     <button class="counterBtn">Add to Count</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
         const socket = io();
         const counterBtn = document.querySelector(".counterBtn");
@@ -31,6 +31,6 @@
             counter.innerText = output.count;
         })
 
-</script>
+</script> -->
 </body>
 </html>
