@@ -49,5 +49,5 @@ def hello_world():
 #     emit('count update', json.dumps({"count" : counter.amount}), broadcast=True)
 
 # For debug
-if __name__ == "__main__":
-    app.run(app, debug=False)
+# if __name__ == "__main__":
+#     app.run(app, debug=False)
