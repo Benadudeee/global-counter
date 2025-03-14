@@ -30,22 +30,23 @@ class Counter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
 
+# Creates a new counter
 
 @app.route("/")
 def hello_world():
-    counter = Counter.query.filter_by(id=0).first()
+    # counter = Counter.query.filter_by(id=0).first()
 
-    return render_template("home.html", counter=counter)
+    return render_template("home.html", counter=0)
 
 
-@socketio.on("count")
-def increment_counter(count):
-    counter = Counter.query.filter_by(id=0).first()
-    counter.amount += 1
+# @socketio.on("count")
+# def increment_counter(count):
+#     counter = Counter.query.filter_by(id=0).first()
+#     counter.amount += 1
 
-    db.session.commit()
+#     db.session.commit()
 
-    emit('count update', json.dumps({"count" : counter.amount}), broadcast=True)
+#     emit('count update', json.dumps({"count" : counter.amount}), broadcast=True)
 
 # For debug
 if __name__ == "__main__":
