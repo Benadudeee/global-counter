@@ -30,6 +30,10 @@ class Counter(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Integer)
 
+counter = Counter(1, 0)
+db.create_all()
+db.session.add(counter)
+db.session.commit()
 
 @app.route("/")
 def hello_world():
