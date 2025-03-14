@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 count.db
 .vscode/
-nitpacks.toml
 
 # C extensions
 *.so
