@@ -31,21 +31,21 @@ class Counter(db.Model):
     amount = db.Column(db.Integer)
 
 with app.app_context():
-    counter = Counter(amount=0)
+    db.drop_all()
     db.create_all()
+    counter = Counter(amount=10)
     db.session.add(counter)
     db.session.commit()
 
 @app.route("/")
 def hello_world():
-    counter = Counter.query.filter_by(id=0).first()
-
+    counter = Counter.query.all().first()
     return render_template("home.html", counter=counter)
 
 
 @socketio.on("count")
 def increment_counter(count):
-    counter = Counter.query.filter_by(id=0).first()
+    counter = Counter.query.all().first()
     counter.amount += 1
 
     db.session.commit()
