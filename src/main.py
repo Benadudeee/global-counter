@@ -1,17 +1,18 @@
-from flask import Flask, render_template
-from flask_socketio import SocketIO, emit
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
+from flask import Flask 
+# render_template
+# from flask_socketio import SocketIO, emit
+# from flask_sqlalchemy import SQLAlchemy
+# from sqlalchemy.orm import DeclarativeBase
 
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-import json
+# import json
 
 
-load_dotenv()
-class Base(DeclarativeBase):
-    pass
+# load_dotenv()
+# class Base(DeclarativeBase):
+#     pass
 
 # To run flask --app main run
 app = Flask(__name__)
