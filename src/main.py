@@ -1,10 +1,12 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
 
 import os
 from dotenv import load_dotenv
+
+import json
 
 
 load_dotenv()
@@ -32,8 +34,19 @@ class Counter(db.Model):
 
 @app.route("/")
 def hello_world():
-    return "<p> Hello Maven </p>"
+    counter = Counter.query.filter_by(id=0).first()
 
+    return render_template("home.html", counter=counter)
+
+
+@socketio.on("count")
+def increment_counter(count):
+    counter = Counter.query.filter_by(id=0).first()
+    counter.amount += 1
+
+    db.session.commit()
+
+    emit('count update', json.dumps({"count" : counter.amount}), broadcast=True)
 
 # For debug
 if __name__ == "__main__":
