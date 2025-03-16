@@ -36,7 +36,7 @@ with app.app_context():
     # Create a new instance every deploy
     db.drop_all()
     db.create_all()
-    counter = Counter(amount=10)
+    counter = Counter(amount=0)
     db.session.add(counter)
     db.session.commit()
 
