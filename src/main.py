@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 import json
 
+import psycopg2
+
 
 load_dotenv()
 class Base(DeclarativeBase):
@@ -40,19 +42,20 @@ with app.app_context():
 
 @app.route("/")
 def hello_world():
-    counter = Counter.query.filter_by(id=1).first()
+    counter = db.session.execute(db.select(Counter)).scalar()
     return render_template("home.html", counter=counter)
 
 
 @socketio.on("count")
 def increment_counter(count):
-    counter = Counter.query.filter_by(id=1).first()
+    counter = db.session.execute(db.select(Counter)).scalar()
     counter.amount += 1
 
     db.session.commit()
 
     emit('count update', json.dumps({"count" : counter.amount}), broadcast=True)
 
+# db.session.close()
 # For debug
 if __name__ == "__main__":
     socketio.run(app, host="0.0.0.0", debug=False)
