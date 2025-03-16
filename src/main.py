@@ -42,13 +42,13 @@ with app.app_context():
 
 @app.route("/")
 def hello_world():
-    counter = db.session.execute(db.select(Counter)).scalar()
+    counter = Counter.query.filter_by(id=1).first()
     return render_template("home.html", counter=counter)
 
 
 @socketio.on("count")
 def increment_counter(count):
-    counter = db.session.execute(db.select(Counter)).scalar()
+    counter = Counter.query.filter_by(id=1).first()
     counter.amount += 1
 
     db.session.commit()
