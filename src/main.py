@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 
 import json
 
-import psycopg2
-
 
 load_dotenv()
 class Base(DeclarativeBase):
@@ -21,6 +19,9 @@ app = Flask(__name__)
 # ---- Config ----
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('LOCAL_DB_URI')
 app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
+
+app.config["SQLALCHEMY_ENGINE_OPTIONS"]["pool_recycle"] = 3600
+app.config["SQLALCHEMY_ENGINE_OPTIONS"]["pool_pre_ping"] = True 
 
 socketio = SocketIO(app)
 db = SQLAlchemy(model_class=Base)
